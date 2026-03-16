@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ResourceController;
+use App\Http\Controllers\Api\BookingController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -12,7 +13,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'me']);
     
     Route::apiResource('resources', ResourceController::class);
-});
-Route::middleware(['auth:sanctum', 'admin'])->group(function () {
-    Route::apiResource('resources', ResourceController::class);
+    
+    Route::get('/bookings', [BookingController::class, 'index']);
+    Route::post('/bookings', [BookingController::class, 'store']);
+    Route::get('/bookings/{booking}', [BookingController::class, 'show']);
+    Route::put('/bookings/{booking}/cancel', [BookingController::class, 'cancel']);
+    
+    Route::middleware('admin')->group(function () {
+        Route::get('/admin/bookings', [BookingController::class, 'adminIndex']);
+    });
 });
