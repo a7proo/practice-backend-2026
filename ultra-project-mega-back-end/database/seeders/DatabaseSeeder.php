@@ -2,24 +2,45 @@
 
 namespace Database\Seeders;
 
+use App\Models\Resource;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::create([
+            'name' => 'Администратор',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::create([
+            'name' => 'Пользователь',
+            'email' => 'user@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'user',
+        ]);
+
+        Resource::create([
+            'name' => 'Переговорка А',
+            'description' => 'Большая переговорка с проектором',
+            'location' => 'Офис А, этаж 3',
+            'capacity' => 10,
+            'features' => ['projector', 'whiteboard', 'video_conf'],
+            'is_active' => true,
+        ]);
+
+        Resource::create([
+            'name' => 'Переговорка Б',
+            'description' => 'Маленькая переговорка',
+            'location' => 'Офис А, этаж 2',
+            'capacity' => 4,
+            'features' => ['whiteboard'],
+            'is_active' => true,
         ]);
     }
 }
