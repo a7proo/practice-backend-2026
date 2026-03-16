@@ -5,21 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Model
+class Review extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
         'resource_id',
-        'start_time',
-        'end_time',
-        'status',
+        'booking_id',
+        'rating',
+        'comment',
     ];
 
     protected $casts = [
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
+        'rating' => 'integer',
     ];
 
     public function user()
@@ -32,13 +31,8 @@ class Booking extends Model
         return $this->belongsTo(Resource::class);
     }
 
-    public function review()
+    public function booking()
     {
-        return $this->hasOne(Review::class);
-    }
-
-    public function isCompleted()
-    {
-        return $this->status === 'completed' && $this->end_time->isPast();
+        return $this->belongsTo(Booking::class);
     }
 }
