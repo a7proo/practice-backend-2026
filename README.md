@@ -18,13 +18,13 @@
 - 5_step    Мелкие исправления файла readme добавление postman collection
 
 # Структура репозитория
-├── README.md
-├── docs/
-│   └── ER-diagram.png
-├── ultra-project-mega-back-end/
-│   └── # весь проект
-└── postman collection
-    └── My Collection.postman_collection #колекции из postman 
+- ├── README.md
+- ├── docs/
+- │   └── ER-diagram.png
+- ├── ultra-project-mega-back-end/
+- │   └── # весь проект
+- └── postman collection
+-     └── My Collection.postman_collection #колекции из postman 
 
 # Локальная установка
 
