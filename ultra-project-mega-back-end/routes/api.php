@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/resources/available', [ResourceController::class, 'available']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'me']);
@@ -27,6 +29,5 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-Route::get('/resources/available', [ResourceController::class, 'available']);
 Route::get('/resources/{resource}/schedule', [ResourceController::class, 'schedule']);
 Route::get('/resources/{resource}/reviews', [ReviewController::class, 'index']);
